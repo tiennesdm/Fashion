@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://tiennesdm:n5BfiMQw9XNUZfHs@meanstack-srts7.mongodb.net/test?retryWrites=true",
+  "jwtSecret": "n5BfiMQw9XNUZfHs"
+}

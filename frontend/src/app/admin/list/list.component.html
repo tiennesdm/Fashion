@@ -1,0 +1,60 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<!----<div class="container" multi="true" *ngIf="posts.length > 0 && !isLoading">
+
+
+<div fxLayout="row wrap" fxLayoutAlign="space-around center" >
+  <div  *ngFor="let post of posts">
+    <mat-card class="example-card" layout="row">
+      <mat-card-header>
+        <mat-card-title>  {{ post.title }}</mat-card-title>
+        <mat-card-subtitle>{{post.category}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="post.imagePath" [alt]="post.title">
+      <mat-card-content>
+        <p>
+          {{ post.content }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions *ngIf="userIsAuthenticated && userId === post.creator">
+        <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
+        <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+</div>
+</div>
+<mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="posts.length > 0"></mat-paginator>
+  <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
+
+  --->
+<div class="container" multi="true" *ngIf="posts.length > 0 && !isLoading">
+  <div class="row">
+    <div class="col-md-3 col-sm-6" *ngFor="let post of posts">
+      <div class="product-grid2">
+          <div class="product-image2">
+              <a>
+                  <img class="pic-1" [src]="post.imagePath" [alt]="post.title">
+                  <img class="pic-2" [src]="post.imagePath" [alt]="post.title">
+              </a>
+              <ul class="social" *ngIf="userIsAuthenticated && userId === post.creator">
+                  <li><a  data-tip="Edit" [routerLink]="['/edit', post.id]"><i class="fa fa-edit"></i></a></li>
+                  <li><a  data-tip="Delete" (click)="onDelete(post.id)"><i class="fa fa-trash"></i></a></li>
+              </ul>
+              <a class="add-to-cart" href="">{{ post.title }}</a>
+          </div>
+          <div class="product-content">
+              <h3 class="title"><a >{{post.category}}</a></h3>
+              <span class="price">  {{ post.content }}</span>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+<mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="posts.length > 0"></mat-paginator>
+  <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
+
+

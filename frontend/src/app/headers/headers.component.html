@@ -1,0 +1,48 @@
+<mat-toolbar>
+<mat-toolbar-row>
+    <span routerLink="/" >
+       <img src="assets/img/logo.png" class="logo" alt="" >
+      </span>
+  <span>
+    <ul>
+     <!----   <li *ngIf="!userIsAuthenticated" class="desktop">
+            <a  routerLink="/"></a>
+          </li>    -->
+        <li *ngIf="!userIsAuthenticated"  class="desktop">
+            <a  routerLink="/men" routerLinkActive="text-primary">Men</a>
+          </li>
+          <li *ngIf="!userIsAuthenticated" class="desktop">
+            <a  routerLink="/women" routerLinkActive="text-success">Women</a>
+          </li>
+          <li  class="desktop">
+              <a >Kids</a>
+            </li>
+         <!----   <li  class="desktop">
+                <a >Home & Living </a>
+              </li> -->
+              <li  class="desktop">
+                  <a >Discover </a>
+                </li>
+    </ul>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="!userIsAuthenticated" class="desktop">
+      <a  routerLink="/login" routerLinkActive="text-info"><i class="fa fa-user fa-2x" ></i></a>
+    </li>
+    <li *ngIf="userIsAuthenticated" class="desktop">
+      <a  routerLink="/create" routerLinkActive="text-dark">Create Product</a>
+    </li>
+    <li *ngIf="userIsAuthenticated" class="desktop">
+      <a  routerLink="/list" routerLinkActive="text-danger">List</a>
+    </li>
+    <li *ngIf="userIsAuthenticated" class="desktop">
+        <a  routerLink="/card" routerLinkActive="text-danger">Card</a>
+      </li>
+    <li *ngIf="userIsAuthenticated" class="desktop">
+      <a   (click)="onLogout()"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+    </li>
+  </ul>
+</mat-toolbar-row>
+</mat-toolbar>
+<!----<app-grid></app-grid> -->

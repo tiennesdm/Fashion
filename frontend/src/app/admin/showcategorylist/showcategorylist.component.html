@@ -1,0 +1,38 @@
+<div class="container" multi="true">
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <mat-list *ngFor="let item of category">
+        <mat-list-item class="hidden"> {{item._id}}</mat-list-item>
+        <mat-list-item  >{{item.category_name}}
+          <i class="fa fa-edit" (click)="editCategory(item._id)" ></i>
+         <i class="fa fa-trash" (click)="deleteCategory(item._id)" aria-hidden="true"></i>
+        </mat-list-item>
+
+
+       </mat-list>
+  </div>
+  </div>
+</div>
+<!----<table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+<!----  <div *ngFor="let item of category">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let item"> {{item.id}} </td>
+  </ng-container>  -->
+
+  <!-- Name Column -->
+ <!---- <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let item"> {{item.category_name}} </td>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</div>
+</table> -->
+
+
