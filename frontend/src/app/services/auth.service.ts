@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 import { AuthData } from '../auth/auth-data.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  baseUrl = environment.baseUrl;
 
   private isAuthenticated = false;
   private token: string;
@@ -46,10 +48,11 @@ export class AuthService {
   } */
 
   login(email: string, password: string) {
+    let url = this.baseUrl + '/user/login' ;
     const authData: AuthData = { email: email, password: password };
     this.http
       .post<{ token: string; expiresIn: number; userId: string }>(
-        'http://localhost:3000/api/user/login',
+        url,
         authData
       )
       .subscribe(response => {

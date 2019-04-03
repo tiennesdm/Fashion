@@ -8,12 +8,15 @@ import { CategoryName} from '../shared/CategoryName.model';
 // import {Observable} from 'rxjs/Rx';
 // import {Observable} from 'rxjs/Observable';
 import {Observable} from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+  baseUrl = environment.baseUrl;
+  
 
   private posts: Product[] = [];
   private category: CategoryName[] = [];
@@ -48,11 +51,12 @@ export class AdminService {
       });
   } */
   onCategoryRegister(id: number , categoryName: string ) {
+    let url = this.baseUrl + '/allCategoryName' ;
     const register: CategoryName = { id: null, categoryName: categoryName};
     console.log(register);
     this.http
       .post<{ message: string; }>(
-        'http://localhost:3000/api/allCategoryName',
+        url,
          register
       )
       .subscribe(responseData => {
@@ -66,14 +70,16 @@ export class AdminService {
 
  }
 getCategory(): Observable<CategoryName[]> {
-  return this.http.get<CategoryName[]>('http://localhost:3000/api/allCategoryName')
+  let url = this.baseUrl + '/allCategoryName' ;
+  return this.http.get<CategoryName[]>(url)
 }
 
   getPosts(postsPerPage: number, currentPage: number) {
+    let url = this.baseUrl + '/posts' ;
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        'http://localhost:3000/api/posts' + queryParams
+        url + queryParams
       )
       .pipe(
         map(postData => {
@@ -107,6 +113,7 @@ getCategory(): Observable<CategoryName[]> {
   }
 
   getPost(id: string) {
+    let url = this.baseUrl + '/posts/' ;
     return this.http.get<{
       _id: string;
       title: string;
@@ -114,10 +121,11 @@ getCategory(): Observable<CategoryName[]> {
       imagePath: string;
       creator: string;
       category: string;
-    }>('http://localhost:3000/api/posts/' + id);
+    }>(url + id);
   }
-  getCategorybyId(id: string){
-     return this.http.get<{}>('http://localhost:3000/api/allCategoryName/' + id);
+  getCategorybyId(id: string) {
+     let url = this.baseUrl + '/allCategoryName/' ;
+     return this.http.get<{}>(url + id);
   }
 
   addPost(title: string, content: string, image: File, category: string) {
@@ -127,10 +135,10 @@ getCategory(): Observable<CategoryName[]> {
     postData.append('content', content);
     postData.append('image', image, title);
     postData.append('category', category);
-    console.log(postData);
+    let url = this.baseUrl + '/posts' ;
     this.http
       .post<{ message: string; post: Product }>(
-        'http://localhost:3000/api/posts',
+        url,
         postData
       )
       .subscribe(responseData => {
@@ -159,8 +167,9 @@ getCategory(): Observable<CategoryName[]> {
       };
       console.log(postData);
     }
+    let url = this.baseUrl + '/posts/' ;
     this.http
-      .put('http://localhost:3000/api/posts/' + id, postData)
+      .put(url + id, postData)
       .subscribe(response => {
         this.router.navigate(['/list']);
       });
@@ -168,13 +177,15 @@ getCategory(): Observable<CategoryName[]> {
 
 
   deletePost(postId: string) {
-    return this.http.delete('http://localhost:3000/api/posts/' + postId);
+    let url = this.baseUrl + '/posts/' ;
+    return this.http.delete(url + postId);
   }
   /*deleteCategory(id: string) {
     return this.http.delete('http://localhost:3000/api/allCategoryName' + id);
   } */
   deleteCategory(categoryid: string) {
-    return this.http.delete('http://localhost:3000/api/allCategoryName/' + categoryid);
+    let url = this.baseUrl + '/allCategoryName/' ;
+    return this.http.delete(url + categoryid);
   }
  updateCategory(id: string, categoryName: string) {
    /* console.log(id);
@@ -186,9 +197,9 @@ getCategory(): Observable<CategoryName[]> {
     CategoryData.append('category', category);
     JSON.stringify(CategoryData); */
     const register: CategoryName = { id: id, categoryName: categoryName};
-
+    let url = this.baseUrl + '/allCategoryName/' ;
     this.http
-      .put('http://localhost:3000/api/allCategoryName/' + id, register)
+      .put(url + id, register)
       .subscribe(response => {
         this.router.navigate(['/showcategorylist']);
       });

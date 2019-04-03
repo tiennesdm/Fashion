@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { Product } from '../shared/product.model';
 import { from } from 'rxjs';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrendService {
+  baseUrl = environment.baseUrl;
 
   private posts: Product[] = [];
 //  private women: Post[] = [];
@@ -19,12 +21,13 @@ export class TrendService {
 
   constructor(private http: HttpClient, private router: Router) {}
   getPosts(postsPerPage: number, currentPage: number) {
+    let url = this.baseUrl + '/men' ;
     const men = 'Men';
     // const category = `&category=${men}`;
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}&category=${men}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        'http://localhost:3000/api/men' + queryParams
+        url + queryParams
       )
       .pipe(
         map(postData => {
@@ -58,6 +61,7 @@ export class TrendService {
   }
 
   getPost(id: string) {
+    let url = this.baseUrl + '/men' ;
     return this.http.get<{
       _id: string;
       title: string;
@@ -65,13 +69,14 @@ export class TrendService {
       imagePath: string;
       creator: string;
       category: string;
-    }>('http://localhost:3000/api/men' + id);
+    }>(url + id);
   }
  getPostsWomen(postsPerPage: number, currentPage: number) {
+    let url = this.baseUrl + '/women' ;
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string; posts: any; maxPosts: number }>(
-        'http://localhost:3000/api/women' + queryParams
+        url + queryParams
       )
       .pipe(
         map(postData => {
@@ -104,6 +109,7 @@ export class TrendService {
   }
 
   getPostWomen(id: string) {
+    let url = this.baseUrl + '/women' ;
     return this.http.get<{
       _id: string;
       title: string;
@@ -111,6 +117,6 @@ export class TrendService {
       imagePath: string;
       creator: string;
       category: string;
-    }>('http://localhost:3000/api/women' + id);
+    }>(url + id);
   }
 }

@@ -15,6 +15,7 @@ import { NgForm, ValidationErrors, Validator } from '@angular/forms';
 export class CreatecategorylistComponent implements OnInit {
   userIsAuthenticated = false;
   private authStatusSub: Subscription;
+  isLoading = false;
 
   constructor(
     public postsService: AdminService,
@@ -22,6 +23,11 @@ export class CreatecategorylistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authStatusSub = this.authService
+    .getAuthStatusListener()
+    .subscribe(authStatus => {
+      this.isLoading = false;
+    });
   }
   onCategoryRegister(form: NgForm) {
     this.userIsAuthenticated = this.authService.getIsAuth();

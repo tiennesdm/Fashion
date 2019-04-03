@@ -62,7 +62,7 @@ console.log(this.category);
       if (result.nModified > 0) {
         res.status(200).json({ message: "Update successful!" });
       } else {
-        res.status(401).json({ message: "Not authorized!" });
+        res.status(401).json({ message: "Already Exist" });
       }
     })
     .catch(error => {
@@ -83,7 +83,7 @@ exports.deleteCategory = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Deleting posts failed!"
+        message: "Deleting Category failed!"
       });
     });
 }
@@ -98,7 +98,7 @@ exports.getCategoryById = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Fetching post failed!"
+        message: "Fetching Category failed!"
       });
     });
   }
