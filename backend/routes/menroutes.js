@@ -9,6 +9,7 @@ const router = express.Router();
 
 
 router.get("/", postcontroller.getbyallMenPost );
+router.get("/:category", postcontroller.getpostbyCategory );
 
 
 

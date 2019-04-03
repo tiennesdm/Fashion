@@ -1,3 +1,4 @@
+
 <mat-toolbar>
 <mat-toolbar-row>
     <span routerLink="/" >
@@ -8,22 +9,24 @@
      <!----   <li *ngIf="!userIsAuthenticated" class="desktop">
             <a  routerLink="/"></a>
           </li>    -->
-        <li *ngIf="!userIsAuthenticated"  class="desktop">
-            <a  routerLink="/men" routerLinkActive="text-primary">Men</a>
+        <li  *ngIf="!userIsAuthenticated"  class="desktop">
+            <a  *ngFor="let item of category" routerLink="{{item.category_name}}" routerLinkActive="text-primary" (click)="getCategoryName(item.category_name)">{{item.category_name}}
+              
+            </a>
           </li>
-          <li *ngIf="!userIsAuthenticated" class="desktop">
+       <!----   <li *ngIf="!userIsAuthenticated" class="desktop">
             <a  routerLink="/women" routerLinkActive="text-success">Women</a>
           </li>
           <li  class="desktop">
               <a >Kids</a>
-            </li>
+            </li>   -->
          <!----   <li  class="desktop">
                 <a >Home & Living </a>
               </li> -->
-              <li  class="desktop">
+             <!---- <li  class="desktop">
                   <a >Discover </a>
-                </li>
-    </ul>
+                </li>  -->
+     </ul>
   </span>
   <span class="spacer"></span>
   <ul>
@@ -46,3 +49,5 @@
 </mat-toolbar-row>
 </mat-toolbar>
 <!----<app-grid></app-grid> -->
+<app-product [childmessage]= 'parentmessage' class="hidden" ></app-product>
+

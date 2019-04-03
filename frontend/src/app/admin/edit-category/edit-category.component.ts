@@ -108,10 +108,11 @@ export class EditCategoryComponent implements OnInit {
     //    category: this.selected
       });
   });
+    localStorage.removeItem('CategoryId'); 
 }
 
   onSubmit() {
     console.log(this.editForm.value.category);
-    this.userService.updateCategory(this.categoryId, this.editForm.value.category);
+    this.userService.updateCategory(this.editForm.value.id, this.editForm.value.category);
   }
 }

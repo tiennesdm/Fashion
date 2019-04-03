@@ -21,7 +21,7 @@ export class TrendService {
 
   constructor(private http: HttpClient, private router: Router) {}
   getPosts(postsPerPage: number, currentPage: number) {
-    let url = this.baseUrl + '/men' ;
+    let url = this.baseUrl + '/product' ;
     const men = 'Men';
     // const category = `&category=${men}`;
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}&category=${men}`;
@@ -61,7 +61,7 @@ export class TrendService {
   }
 
   getPost(id: string) {
-    let url = this.baseUrl + '/men' ;
+    let url = this.baseUrl + '/product' ;
     return this.http.get<{
       _id: string;
       title: string;
@@ -71,7 +71,16 @@ export class TrendService {
       category: string;
     }>(url + id);
   }
- getPostsWomen(postsPerPage: number, currentPage: number) {
+  getPostByCategory(category: string) {
+    let url = this.baseUrl + '/product/' ;
+    return this.http.get<{  _id: string;
+      title: string;
+      content: string;
+      imagePath: string;
+      creator: string;
+      category: string; }>(url + category);
+  }
+  getPostsWomen(postsPerPage: number, currentPage: number) {
     let url = this.baseUrl + '/women' ;
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http
@@ -118,5 +127,5 @@ export class TrendService {
       creator: string;
       category: string;
     }>(url + id);
-  }
+  } 
 }

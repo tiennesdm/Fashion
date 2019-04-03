@@ -30,5 +30,21 @@ exports.getbyallMenPost = (req, res, next) => {
       });
     });
 }
+exports.getpostbyCategory = (req, res, next) =>{
+  console.log(req.params.category);
+  Trend.find({category: req.params.category}).then(post =>{
+    if(post){
+      res.status(200).json(post);
+    }
+    else {
+      res.status(500).json({message:"Post Not Found"});
+    }
+  })
+  .catch((error)=>{
+    res.status(500).json({
+      message: "Fetching post failed"
+    });
+  });
+}
 
 

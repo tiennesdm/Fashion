@@ -3,25 +3,24 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auth/auth-interceptor';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { AngularMaterialForm } from './angular-material.module';
-import { HeadersComponent } from './headers/headers.component';
-
-import { ErrorComponent } from './error/error.component';
-import { ErrorInterceptor } from './error-interceptor';
-
+import {BreadcrumbsModule} from 'ng6-breadcrumbs';
 import { CarouselModule, PopoverModule , ModalModule } from 'ngx-bootstrap';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { AppRoutingModule } from './app-routing.module';
+import { AngularMaterialForm } from './angular-material.module';
 import 'hammerjs';
 import { HoverbottomcolorDirective } from './shared/hoverbottomcolor.directive';
 import { TrendModule } from './trend/product.module';
 import { MyCarouselModule} from './carousel/carousel.module';
-import { CardComponent } from './card/card.component';
 import {AdminModule} from './admin/admin.module';
-import {BreadcrumbsModule} from 'ng6-breadcrumbs';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
+import { HeadersComponent } from './headers/headers.component';
+import { CardComponent } from './card/card.component';
+import { ErrorComponent } from './error/error.component';
+import { ErrorInterceptor } from './error-interceptor';
+
 // import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
 
 
@@ -49,7 +48,6 @@ import {BreadcrumbsModule} from 'ng6-breadcrumbs';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
-  //  HttpModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -57,12 +55,12 @@ import {BreadcrumbsModule} from 'ng6-breadcrumbs';
     AngularMaterialForm,
     TrendModule ,
     MyCarouselModule,
-    TooltipModule.forRoot(),
-    CarouselModule.forRoot(),
+    AdminModule,
     BreadcrumbsModule,
     PopoverModule.forRoot(),
     ModalModule.forRoot(),
-    AdminModule
+    TooltipModule.forRoot(),
+    CarouselModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -71,7 +71,7 @@ app.use((req, res, next) => {
 
 app.use("/api/posts", postsRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/men",  menRoutes);
+app.use("/api/product",  menRoutes);
 app.use("/api/women", womenRoutes);
 app.use("/api/allCategoryName", allCategoryRoutes);
 
