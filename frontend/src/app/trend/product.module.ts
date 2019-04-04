@@ -11,7 +11,7 @@ import { MenComponent } from './men/men.component';
 import { WomenComponent } from './women/women.component';
 import { ProductComponent } from './product/product.component';
 const routes: Routes = [
-  { path: ':categoryName', component: MenComponent , data: { breadcrumbs: '' }},
+//  { path: ':categoryName', component: ProductComponent , data: { breadcrumbs: '' }},
 //  {path: 'women' , component: WomenComponent, data: { breadcrumbs: 'Women' }},
 //  { path: 'men', component: MenComponent, data: { breadcrumbs: 'Men' } },
 ];

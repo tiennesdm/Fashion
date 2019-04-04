@@ -1,30 +1,65 @@
-import { Component, OnInit, Input, EventEmitter , Output} from '@angular/core';
-import { TrendService } from '../../services/product.service';
-import { Product } from '../../shared/product.model';
+import { Component, OnInit, Input, EventEmitter , Output, 
+  OnChanges,AfterContentChecked, 
+  AfterContentInit, 
+  OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { PageEvent } from '@angular/material';
+import { TrendService } from '../../services/product.service';
+import { AuthService } from '../../services/auth.service';
+import { Product } from '../../shared/product.model';
+
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
-  product: Product;
-   categoryName: string ;
-   @Input() childmessage: string;
-   @Output()emitPass: EventEmitter<string> = new EventEmitter<string>();
-  constructor( public postsService: TrendService) { }
+export class ProductComponent implements  OnChanges{
+  @Input('childmessage') childmessage ;
+  posts: Product [] = [] ;
+  newMessage: any = '';
+  categoryName: string ;
+  isLoading = false;
+  totalPosts = 0;
+  postsPerPage = 8;
+  currentPage = 1;
+  pageSizeOptions = [8, 16, 24, 32];
+  userIsAuthenticated = false;
+  userId: string;
+  private postsSub: Subscription;
+  private authStatusSub: Subscription;
+  constructor( public postsService: TrendService,
+               private authService: AuthService,
+               private spinner: NgxSpinnerService) { }
 
-  ngOnInit() {
-    
-
+  ngOnChanges() {
+    this.spinner.show();
+    setTimeout( () => {this.spinner.hide(); }, 1000);
+    console.log('i am change ', this.childmessage);
+    this.postsService.getPostByCategory(this.childmessage).subscribe(
+      (data: any) => {
+        this.posts = data;
+        console.log(this.posts);
+      }
+    );
+    this.postsSub = this.postsService
+    .getPostUpdateListener()
+    .subscribe((postData: { posts: Product[]; postCount: number }) => {
+      this.isLoading = false;
+      this.totalPosts = postData.postCount;
+      this.posts = postData.posts;
+    });
   }
-  ngAfterViewInit() {
-    console.log('i am child',this.childmessage);
+  onChangedPage(pageData: PageEvent) {
+    this.isLoading = true;
+    this.currentPage = pageData.pageIndex + 1;
+    this.postsPerPage = pageData.pageSize;
+    this.postsService.getPosts(this.postsPerPage, this.currentPage);
   }
-  getCategoryName() {
-   // this.emitPass.emit(this.childmessage);
-   // console.log('this is my', this.childmessage);
-  }
+ /* ngOnDestroy() {
+    this.postsSub.unsubscribe();
+    this.authStatusSub.unsubscribe();
+  } */
 
 }

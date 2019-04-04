@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, ElementRef, Renderer2 ,HostListener,HostBinding,Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Renderer2 
+  ,HostListener,HostBinding,Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {CategoryName} from '../shared/CategoryName.model';
 import { AuthService } from '../services/auth.service';
@@ -13,7 +14,7 @@ export class HeadersComponent implements OnInit, OnDestroy  {
   defaultcolor = 'black';
    Highlightedcolor = 'red' ;
     @HostBinding('style.color') color  = this.defaultcolor;
-
+    // @Output() categoryName = new EventEmitter<string>();
   userIsAuthenticated = false;
   c: string;
   private authListenerSubs: Subscription;
@@ -25,8 +26,9 @@ export class HeadersComponent implements OnInit, OnDestroy  {
               public productService: TrendService, 
               private elm: ElementRef , private render: Renderer2
    ) {}
-
+newMessage: any  = '';
   ngOnInit() {
+  
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
@@ -34,27 +36,16 @@ export class HeadersComponent implements OnInit, OnDestroy  {
         this.userIsAuthenticated = isAuthenticated;
       });
     this.postsService.getCategory()
-    .subscribe( data => {
-      this.category = data;
+    .subscribe( (data: any )=> {
+      this.category= data;
      // this.c = this.category.category_name
       // this.category= data._id
       console.log(this.category);
     });
+    
   }
   getCategoryName(categoryname: string) {
-    let parentmessage;
-    console.log('my name is category', categoryname);
-    parentmessage = categoryname;
-    console.log(parentmessage);
-   // localStorage.setItem('CategoryName', categoryname.toString());
-    this.productService.getPostByCategory(categoryname).subscribe( (postdata: any)=> {
-      console.log(postdata);
-    }
-
-    );
-    // console.log(  this.productService.getPostByCategory(categoryname));
-
-
+    this.newMessage = categoryname;
 
   }
   @HostListener('mouseenter') mouseover(event: Event)

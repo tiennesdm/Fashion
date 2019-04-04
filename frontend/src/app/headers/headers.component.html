@@ -34,10 +34,10 @@
       <a  routerLink="/login" routerLinkActive="text-info"><i class="fa fa-user fa-2x" ></i></a>
     </li>
     <li *ngIf="userIsAuthenticated" class="desktop">
-      <a  routerLink="/create" routerLinkActive="text-dark">Create Product</a>
+      <a  routerLink="/admin/create" routerLinkActive="text-dark">Create Product</a>
     </li>
     <li *ngIf="userIsAuthenticated" class="desktop">
-      <a  routerLink="/list" routerLinkActive="text-danger">List</a>
+      <a  routerLink="/admin/list" routerLinkActive="text-danger">List</a>
     </li>
     <li *ngIf="userIsAuthenticated" class="desktop">
         <a  routerLink="/card" routerLinkActive="text-danger">Card</a>
@@ -49,5 +49,5 @@
 </mat-toolbar-row>
 </mat-toolbar>
 <!----<app-grid></app-grid> -->
-<app-product [childmessage]= 'parentmessage' class="hidden" ></app-product>
+<app-product [childmessage]= 'newMessage' class="hidden" ></app-product>
 

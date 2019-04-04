@@ -14,48 +14,6 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./edit-category.component.css']
 })
 export class EditCategoryComponent implements OnInit {
- /* category: CategoryName;
-  editForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,private router: Router, private apiService: AdminService) { }
-
-  ngOnInit() {
-   let userId = window.localStorage.getItem('editUserId');
-    if(!userId) {
-      alert('Invalid action.');
-      this.router.navigate(['/showcategorylist']);
-      return;
-    }
-    this.editForm = this.formBuilder.group({
-      id: [''],
-      username: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      age: ['', Validators.required],
-      salary: ['', Validators.required]
-    });
-    this.apiService.getUserById(+userId)
-      .subscribe( data => {
-        this.editForm.setValue(data.result);
-      });
-  }
-
-  onSubmit() {
-    this.apiService.updateUser(this.editForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          if(data.status === 200) {
-            alert('User updated successfully.');
-            this.router.navigate(['list-user']);
-          }else {
-            alert(data.message);
-          }
-        },
-        error => {
-          alert(error);
-        });
-  }
-  }*/
   post: CategoryName;
   editForm: FormGroup;
   categoryId: string;

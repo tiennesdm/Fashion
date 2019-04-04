@@ -71,14 +71,9 @@ export class TrendService {
       category: string;
     }>(url + id);
   }
-  getPostByCategory(category: string) {
+  getPostByCategory(category: string): Observable<Product[]> {
     let url = this.baseUrl + '/product/' ;
-    return this.http.get<{  _id: string;
-      title: string;
-      content: string;
-      imagePath: string;
-      creator: string;
-      category: string; }>(url + category);
+    return this.http.get<Product[]>(url + category);
   }
   getPostsWomen(postsPerPage: number, currentPage: number) {
     let url = this.baseUrl + '/women' ;
