@@ -4,5 +4,6 @@ const router = express.Router();
 router.post("/signup", signupandlogin.createexpressUser );
 
 router.post("/login", signupandlogin.signexpressUser);
+router.post("/forget", signupandlogin.forgetpassword);
 
 module.exports = router;

@@ -79,3 +79,33 @@ exports.signexpressUser = function (req, res, next) {
 		}
 	});
 }
+exports.forgetpassword = function (req, res, next) {
+	//console.log('req.body');
+	//console.log(req.body);
+	User.findOne({email:req.body.email},function(err,data){
+		console.log(data);
+		if(!data){
+            res.status(500).json({Success:"Email not is already register"});
+		//	res.send({"Success":"This Email Is not regestered!"});
+		}else{
+			// res.send({"Success":"Success!"});
+			if (req.body.password==req.body.passwordConf) {
+			data.password=req.body.password;
+			data.passwordConf=req.body.passwordConf;
+
+			data.save(function(err, Person){
+				if(err)
+					console.log(err);
+				else
+                    console.log('Success');
+                    res.status(201).json({Success:"password changed"});  
+				//	res.send({"Success":"Password changed!"});
+			});
+		}else{
+            res.status(500).json({Success:"Both password not matched"});
+			//res.send({"Success":"Password does not matched! Both Password should be same."});
+		}
+		}
+	});
+	
+}
