@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CarouselComponent } from './carousel.component';
 
+
 @NgModule({
   declarations: [
     CarouselComponent ,

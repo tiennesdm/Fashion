@@ -22,9 +22,9 @@ export class ProductComponent implements  OnChanges{
   categoryName: string ;
   isLoading = false;
   totalPosts = 0;
-  postsPerPage = 8;
+  postsPerPage;
   currentPage = 1;
-  pageSizeOptions = [8, 16, 24, 32];
+  pageSizeOptions = [];
   userIsAuthenticated = false;
   userId: string;
   private postsSub: Subscription;
@@ -40,7 +40,11 @@ export class ProductComponent implements  OnChanges{
     this.postsService.getPostByCategory(this.childmessage).subscribe(
       (data: any) => {
         this.posts = data;
-        console.log(this.posts);
+        console.log(data);
+        console.log(data.message);
+        this.postsPerPage = data.maxPosts;
+      //  this.pageSizeOptions.push(data.length+1);
+      //  console.log(data.maxPosts);
       }
     );
     this.postsSub = this.postsService
@@ -49,6 +53,7 @@ export class ProductComponent implements  OnChanges{
       this.isLoading = false;
       this.totalPosts = postData.postCount;
       this.posts = postData.posts;
+    
     });
   }
   onChangedPage(pageData: PageEvent) {

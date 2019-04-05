@@ -7,10 +7,14 @@ const postsRoutes = require("./routes/adminroutes");
 const userRoutes = require("./routes/loginauth");
 const menRoutes = require("./routes/menroutes");
 const womenRoutes = require("./routes/womenroutes");
+const sessionRoutes = require("./routes/expresssession");
 // const assert = require('assert');
 const allCategoryRoutes = require("./routes/allCategoryName");
 autoIncrement = require('mongoose-auto-increment');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const url = 'localhost:27017/myDatabase';
+const db = mongoose.connection;
 
 const dbName = 'myproject';
 const app = express();
@@ -20,6 +24,15 @@ mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true}) .th
 .catch(() => {
   console.log("Connection failed!");
 });
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));
+
 //mongoose.connect('')
 /*MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -74,6 +87,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/product",  menRoutes);
 app.use("/api/women", womenRoutes);
 app.use("/api/allCategoryName", allCategoryRoutes);
-
+app.use("/api/session", sessionRoutes);
 
 module.exports = app;

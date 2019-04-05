@@ -17,7 +17,7 @@ const routes: Routes = [
   data: { breadcrumbs: 'Login' },
 },
 //  {path: 'women' , component: WomenComponent},
- { path: '', redirectTo: 'men', pathMatch: 'full' },
+ // { path: ':categoryName', redirectTo: '', pathMatch: 'full' },
 // { path: 'trend', loadChildren: './trend/trend.module#TrendModule',
 // },
 /*{

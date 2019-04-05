@@ -2,8 +2,8 @@ const Trend = require("../models/trend");
 
 
 exports.createPost =  (req, res, next) => {
-  console.log(req.body);
-  console.log(req.userData.userId);
+ // console.log(req.body);
+ // console.log(req.userData.userId);
   const url = req.protocol + "://" + req.get("host");
   const post = new Trend({
     title: req.body.title,
