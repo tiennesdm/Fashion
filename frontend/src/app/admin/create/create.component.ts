@@ -4,10 +4,10 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AdminService  } from '../../services/admin.service';
-import { Product } from '../../shared/product.model';
+import { Product } from '../../models/product.model';
 import { mimeType } from '../../shared/mime-type.validator';
 import { AuthService } from '../../services/auth.service';
-import { CategoryName } from '../../shared/CategoryName.model';
+import { CategoryName } from '../../models/CategoryName.model';
 
 
 

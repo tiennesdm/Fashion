@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { PageEvent } from '@angular/material';
 import { TrendService } from '../../services/product.service';
 import { AuthService } from '../../services/auth.service';
-import { Product } from '../../shared/product.model';
+import { Product } from '../../models/product.model';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
-import { Product } from '../../shared/product.model';
+import { Product } from '../../models/product.model';
 import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { TrendService } from '../../services/product.service';

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdminService } from '../../services/admin.service';
 import { AuthService } from '../../services/auth.service';
-import { CategoryName } from '../../shared/CategoryName.model';
+import { CategoryName } from '../../models/CategoryName.model';
 import {MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 

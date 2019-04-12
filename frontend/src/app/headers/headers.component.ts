@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, Renderer2 
   ,HostListener,HostBinding,Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
-import {CategoryName} from '../shared/CategoryName.model';
+import {CategoryName} from '../models/CategoryName.model';
 import { AuthService } from '../services/auth.service';
 import { AdminService } from '../services/admin.service';
 import { TrendService } from '../services/product.service';

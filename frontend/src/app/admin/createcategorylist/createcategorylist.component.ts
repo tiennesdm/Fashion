@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin.service';
 import { AuthService } from '../../services/auth.service';
-import { CategoryName } from '../../shared/CategoryName.model';
+import { CategoryName } from '../../models/CategoryName.model';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm, ValidationErrors, Validator } from '@angular/forms';

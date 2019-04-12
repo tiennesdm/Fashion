@@ -4,7 +4,7 @@ import { AdminService } from '../../services/admin.service';
 import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import { CategoryName } from '../../shared/CategoryName.model';
+import { CategoryName } from '../../models/CategoryName.model';
 import {MatTableDataSource} from '@angular/material';
 import { first } from 'rxjs/operators';
 
