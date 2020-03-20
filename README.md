@@ -23,7 +23,7 @@ npm install
 4) Run the frontend server and backend server 
 ```
 cd frontend/ng serve
-cd backend/npm start
+cd backend/npm run start:server
 ```
 5) webpack development server will start at: http://localhost:4200
 6) development server will start at: http://localhost:3000
